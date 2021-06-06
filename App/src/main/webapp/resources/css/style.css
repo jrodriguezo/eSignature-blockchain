@@ -1,0 +1,40 @@
+@charset "ISO-8859-1";
+@import url("https://fonts.googleapis.com/css?family=Hind:500");
+
+
+/* body main */
+body {
+   /*
+    background: url("../imgs/blockchain.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+	font-family: "hind", sans-serif;
+   */
+   background-color: rgb(52, 58, 64);
+}
+/* Fixing card image to a specific size */
+.card-img-top {
+    width: 100%;
+    height: 11vw;
+    object-fit: cover;
+}
+
+/* 
+.card-img {
+    width: 100%;
+    height: 11vw;
+    object-fit: cover;
+}
+*7
+
+/* When the mouse is over the image it becomes transparent. */
+.transparency:hover {
+    filter: opacity(.5);
+}
+
+button{
+    position:absolute;
+    bottom:0
+}
+
+

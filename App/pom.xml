@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>es.upm.dit</groupId>
+  <artifactId>App</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>App Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.15</maven.compiler.source>
+    <maven.compiler.target>1.15</maven.compiler.target>
+    <!-- specify version of java and DSS to use with eSignature -->
+    <java.version>15</java.version>
+	<dss.groupId>eu.europa.ec.joinup.sd-dss</dss.groupId>
+	<dss.version>5.7</dss.version>
+  </properties>
+
+  <dependencies>
+  <!--  test app -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- MVC library -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.1.8.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>4.1.8.RELEASE</version>
+	</dependency>
+	<!-- connect with database in a future -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.36</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.4</version>
+	</dependency>
+	
+	<!-- eSignature -->
+    <dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-enumerations</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-service</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-xades</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>     
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-token</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-utils</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-utils-apache-commons</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>specs-trusted-list</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>specs-validation-report</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-tsl-validation</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.digidoc4j.dss</groupId>
+	    <artifactId>dss-signature-dto</artifactId>
+	    <version>5.7.d4j.2</version>
+	</dependency>
+	<dependency>
+	   <groupId>org.slf4j</groupId>
+	   <artifactId>slf4j-simple</artifactId>
+	   <version>1.7.30</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.digidoc4j.dss</groupId>
+	    <artifactId>dss-detailed-report-jaxb</artifactId>
+	    <version>5.7.d4j.2</version>
+	</dependency>
+	
+	<!-- these are the dependencies for PDF  -->
+	<dependency>
+	    <groupId>com.itextpdf</groupId>
+	    <artifactId>itextpdf</artifactId>
+	    <version>5.5.13.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-pades</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${dss.groupId}</groupId>
+	    <artifactId>dss-pades-pdfbox</artifactId>
+	    <version>${dss.version}</version>
+	</dependency>
+	
+	<!-- web3j -->
+	<dependency>
+		<groupId>org.web3j</groupId>
+		<artifactId>core</artifactId>
+		<version>4.8.4</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+	<dependency>
+		<groupId>com.squareup.okhttp3</groupId>
+		<artifactId>okhttp</artifactId>
+		<version>4.9.1</version>
+	</dependency>
+  </dependencies>
+
+<!-- repository to use eSignature (mandatory to import dependencies) -->
+<repositories>
+	<repository>
+	  <id>cefdigital</id>
+	  <name>cefdigital</name>
+	  <url>https://ec.europa.eu/cefdigital/artifact/content/repositories/esignaturedss/</url>
+	</repository>
+</repositories>
+
+  <build>
+    <finalName>App</finalName>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <!-- web3j -->
+		<plugin>
+			<groupId>org.web3j</groupId>
+			<artifactId>web3j-maven-plugin</artifactId>
+			<version>4.6.5</version>
+			<configuration>
+				<packageName>es.upm.dit.blockchain</packageName>
+				<sourceDestination>src/main/java</sourceDestination>
+				<nativeJavaType>true</nativeJavaType>
+				<outputFormat>java,bin</outputFormat>
+				<soliditySourceFiles>
+					<directory>src/main/webapp/resources/contracts</directory>
+					<includes>
+						<include>**/*.sol</include>
+					</includes>
+				</soliditySourceFiles>
+				<outputDirectory>
+					<java>src/main/java</java>
+		            <bin>src/bin/generated</bin>
+		            <abi>src/abi/generated</abi>
+				</outputDirectory>
+				<contract>
+					<includes>
+						<include>greeter</include>
+					</includes>
+					<excludes>
+						<exclude>mortal</exclude>
+					</excludes>
+				</contract>
+				<pathPrefixes>
+					<pathPrefix>dep=../dependencies</pathPrefix>
+				</pathPrefixes>
+			</configuration>
+		</plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
