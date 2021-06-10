@@ -68,19 +68,74 @@ The complete architecture of the system is shown below, highlighting in gray wha
 
 ### Prerequisites on W10
 
-The following components are necessary for the execution of the application:
+The following components are necessary (and have been tested) for the execution of the application:
 * [Git Bash](https://gitforwindows.org/) (Optionally)
+* [Eclipse IDE for Enterprise Java and Web Developers](https://www.eclipse.org/downloads/packages/)
+* [Java SE 15](https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html)
+* [Tomcat v9.0](https://tomcat.apache.org/download-90.cgi)
+* [Geth v1.9.5 for W10 x64](https://geth.ethereum.org/downloads/)
 
 
-### Installation
 
-1. Clone this repository.
 
-   ```
-   git clone 
-   ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Note: you can download the repository as .zip_ 
+### Import and project preparation
+###### 1. Clone this repository.
+```
+git clone https://github.com/jrodriguezo/eSignature-blockchain
+```
+_Note: you can download the repository as .zip_ 
+###### 2. Import the project into Eclipse
+```
+New -> Import -> Existing Projects into Workspace -> Select the workspace downloaded
+```
+###### 3. Dynamic web
+Include Apache Tomcat server as follow:
+```
+Eclipse -> Preferences -> Server -> Runtime Enviroments -> Select Apache Tomcat v9.0
+```
 
+### Deploy and execution of a private blockchain network using Geth
+###### 1. Generate genesis.json with Puppeth
+Run in a command line window the following
+```
+> puppeth
+> genesis
+> 2
+> 1
+> 1
+> 0x
+> no
+> 1234
+```
+###### 2. Initialize the node
+```
+> geth --datadir node init genesis.json
+```
+###### 3. Open the node console
+```
+> geth --datadir node --rpcapi eth,web3,personal --allow-insecure-unlock --rpc console
+```
+And here you will be able to create new accounts through:
+```
+> personal.newAccount()
+```
+Or select new miners to get ETHs, and;
+```
+> miner.setEtherbase('<YOURETHADDRESS>')
+```
+start to mine.
+```
+> miner.start()
+```
+This last command is essential when you use the application, because we will need a miner to build new transactions.
+
+### Execution under Eclipse
+###### 1. Running the Web application in Eclipse
+```
+Run As -> Run on Server
+and from a browser use the following URL
+http://localhost:8080/App/
+```
 
 
 
