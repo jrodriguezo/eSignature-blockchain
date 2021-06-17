@@ -55,7 +55,7 @@ The complete architecture of the system is shown below, highlighting in gray wha
 ### Prerequisites on W10
 
 The following components are necessary (and have been tested) for the execution of the application:
-* [Git Bash](https://gitforwindows.org/) (Optionally)
+* [Git Bash](https://gitforwindows.org/) (Optional)
 * [Eclipse IDE for Enterprise Java and Web Developers](https://www.eclipse.org/downloads/packages/)
 * [Java SE 15](https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html)
 * [Tomcat v9.0](https://tomcat.apache.org/download-90.cgi)
@@ -113,8 +113,36 @@ start to mine.
 ```
 > miner.start()
 ```
-This last command is essential when you use the application, because we will need a miner to build new transactions.
-
+This last command is essential when you use the SSI part of the application, because we will need a miner to build new transactions.
+###### 4. Deploy contracts on the node
+Here you should have 3 personal newAccount with the roles Issuer, Verifier and Bank (or instead, you can use one account for deploy all contracts).
+Once said that, go to src/main/java/es/upm/dit/blockchain/DeployNewContracts.java and change the wallet path file in lines 50, 67, 78.
+```
+String walletfile = "PATHTOKEYSTORE";
+```
+Then, run de java file:
+```
+right click on DeployNewContracts.java -> Run As -> Java Application
+```
+And if everything is correct, it will generate a similar output with the contract addresses:
+```
+----------------------------------------------------------
+The address of the Issuer contract is at: 0x406cb623ce36e12155b49be161d2b029a92d5715
+----------------------------------------------------------
+The address of the Verifier contract is at: 0x124d2e69668be271808cc5a22534172a28faa09c
+----------------------------------------------------------
+The address of the Bank contract is at: 0xfac417c8c22cf4e0267c9a234686be0786410270
+```
+Finally, change the address path in Credentials.java, Customer.java and Document.java respectively.
+```
+private final static String contractAddress = "0xCONTRACTADDRESS";
+```
+**Note**: We have used the following configurations as GasProvider but, it may change because it depends on how the node is deployed.
+```
+private final static BigInteger GAS_LIMIT = BigInteger.valueOf(0x47b760L);
+private final static BigInteger GAS_PRICE = BigInteger.valueOf(1000000000L);
+ContractGasProvider gasProvider = new StaticGasProvider(GAS_PRICE, GAS_LIMIT);
+```
 ### Execution under Eclipse
 ###### 1. Running the Web application in Eclipse
 ```
