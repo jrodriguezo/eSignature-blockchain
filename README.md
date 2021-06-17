@@ -117,7 +117,7 @@ This last command is essential when you use the SSI part of the application, bec
 ###### 4. Deploy contracts on the node
 Here you should have 3 personal newAccount with the roles Issuer, Verifier and Bank (or instead, you can use one account for deploy all contracts).
 Once said that, go to src/main/java/es/upm/dit/blockchain/DeployNewContracts.java and change the wallet path file in lines 50, 67, 78.
-```
+```js
 String walletfile = "PATHTOKEYSTORE";
 ```
 Then, run de java file:
@@ -134,11 +134,11 @@ The address of the Verifier contract is at: 0x124d2e69668be271808cc5a22534172a28
 The address of the Bank contract is at: 0xfac417c8c22cf4e0267c9a234686be0786410270
 ```
 Finally, change the address path in Credentials.java, Customer.java and Document.java respectively.
-```
+```js
 private final static String contractAddress = "0xCONTRACTADDRESS";
 ```
 **Note**: We have used the following configurations as GasProvider but, it may change because it depends on how the node is deployed.
-```
+```js
 private final static BigInteger GAS_LIMIT = BigInteger.valueOf(0x47b760L);
 private final static BigInteger GAS_PRICE = BigInteger.valueOf(1000000000L);
 ContractGasProvider gasProvider = new StaticGasProvider(GAS_PRICE, GAS_LIMIT);
